@@ -3,6 +3,7 @@ import Header from './Header';
 import { BrowserRouter as Router,Switch,Route,Redirect} from 'react-router-dom';
 import Menu from './Menu';
 import './App.css';
+import HeaderBlog from './HeaderBlog';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -16,7 +17,7 @@ function App() {
         />
         {isMenuOpen&& <Menu/>}
         {/* Header Blog */}
-
+        <HeaderBlog/>
 
       </div>
     </Router>
