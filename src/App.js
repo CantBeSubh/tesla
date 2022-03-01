@@ -10,15 +10,16 @@ function App() {
   return (
     <Router>
       <div className='App'>
-        {/* Header */}
-        <Header
-        isMenuOpen={isMenuOpen} 
-        setIsMenuOpen={setIsMenuOpen}
-        />
-        {isMenuOpen&& <Menu/>}
-        {/* Header Blog */}
-        <HeaderBlog/>
-
+        <Switch>
+          <Route path='/'>
+            <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
+            {isMenuOpen && <Menu/>}
+            <HeaderBlog/>
+          </Route>
+          <Route path='login'>
+            
+          </Route>
+        </Switch>
       </div>
     </Router>
   );
