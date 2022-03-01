@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import Header from './Header';
-import { BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect 
-} from 'react-router-dom';
+import { BrowserRouter as Router,Switch,Route,Redirect} from 'react-router-dom';
+import Menu from './Menu';
 import './App.css';
 
 function App() {
@@ -17,9 +14,10 @@ function App() {
         isMenuOpen={isMenuOpen} 
         setIsMenuOpen={setIsMenuOpen}
         />
-
-
+        {isMenuOpen&& <Menu/>}
         {/* Header Blog */}
+
+
       </div>
     </Router>
   );
