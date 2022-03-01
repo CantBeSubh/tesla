@@ -4,6 +4,7 @@ import { BrowserRouter as Router,Switch,Route,Redirect} from 'react-router-dom';
 import Menu from './Menu';
 import './App.css';
 import HeaderBlog from './HeaderBlog';
+import Login from './Login';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -11,13 +12,13 @@ function App() {
     <Router>
       <div className='App'>
         <Switch>
-          <Route path='/'>
+          <Route exact path='/'>
             <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
             {isMenuOpen && <Menu/>}
             <HeaderBlog/>
           </Route>
-          <Route path='login'>
-            
+          <Route path='/login'>
+            <Login/>
           </Route>
         </Switch>
       </div>
