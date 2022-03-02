@@ -1,16 +1,33 @@
 import { LanguageOutlined } from '@material-ui/icons'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ButtonPrimary from './ButtonPrimary'
 import ButtonSecondary from './ButtonSecondary'
+import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword} from 'firebase/auth'
+import {login} from './features/userSlice'
 import './Login.css'
+import { useHistory } from 'react-router-dom'
 
 function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const dispatch=useDispatch()
+    const history=useHistory()
 
     const signIn=(e)=>{
         e.preventDefault()
+        const auth=getAuth()
+        signInWithEmailAndPassword(auth,email,password)
+        .then(userAuth=>{
+            dispatch(login({
+                email:userAuth.user.email,
+                uid:userAuth.user.uid,
+                name:userAuth.user.displayName
+            }))
+
+        history.push('/teslaaccount')
+        }).catch(err=>alert(err.message))
     }
     
     const signUp=(e)=>{

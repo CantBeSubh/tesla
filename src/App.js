@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import Header from './Header';
 import { BrowserRouter as Router,Switch,Route,Redirect} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUser } from './features/userSlice';
+
+import Header from './Header';
 import Menu from './Menu';
-import './App.css';
 import HeaderBlog from './HeaderBlog';
 import Login from './Login';
+import './App.css';
 
 function App() {
+  const user=useSelector(selectUser)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   return (
     <Router>
@@ -18,7 +22,11 @@ function App() {
             <HeaderBlog/>
           </Route>
           <Route path='/login'>
-            <Login/>
+            {user?<Redirect to='/teslaaccount'/>:<Login/>}
+            {/* <Login/> */}
+          </Route>
+          <Route path='/signup'>
+            <SignUp/>
           </Route>
         </Switch>
       </div>
