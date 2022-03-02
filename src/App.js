@@ -8,6 +8,7 @@ import Menu from './Menu';
 import HeaderBlog from './HeaderBlog';
 import Login from './Login';
 import './App.css';
+import SignUp from './SignUp';
 
 function App() {
   const user=useSelector(selectUser)
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path='/signup'>
             <SignUp/>
+          </Route>
+          <Route path='/teslaaccount'>
+            YES
           </Route>
         </Switch>
       </div>

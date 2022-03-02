@@ -4,10 +4,10 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ButtonPrimary from './ButtonPrimary'
 import ButtonSecondary from './ButtonSecondary'
-import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword} from 'firebase/auth'
 import {login} from './features/userSlice'
 import './Login.css'
 import { useHistory } from 'react-router-dom'
+import {LogIn} from './firebase'
 
 function Login() {
     const [email, setEmail] = useState('')
@@ -15,10 +15,9 @@ function Login() {
     const dispatch=useDispatch()
     const history=useHistory()
 
-    const signIn=(e)=>{
+    const signIn=async (e)=>{
         e.preventDefault()
-        const auth=getAuth()
-        signInWithEmailAndPassword(auth,email,password)
+        await LogIn(email,password)
         .then(userAuth=>{
             dispatch(login({
                 email:userAuth.user.email,
@@ -30,9 +29,6 @@ function Login() {
         }).catch(err=>alert(err.message))
     }
     
-    const signUp=(e)=>{
-        e.preventDefault()
-    }
     return (
         <div className='login'>
             <div className="login">
@@ -73,7 +69,7 @@ function Login() {
                         <hr/><span>OR</span><hr/>
                     </div>
                     <Link to='/signup'>
-                        <ButtonSecondary name='create account' type='submit' onClick={signUp}/>
+                        <ButtonSecondary name='create account'/>
                     </Link>
                 </div>
             </div>
